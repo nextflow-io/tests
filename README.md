@@ -1,0 +1,4 @@
+examples
+========
+
+Nextflow examples
