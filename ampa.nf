@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 import nextflow.Channel
 
-params.in = "${HOME}/sample.fa"
+params.in = "$baseDir/data/sample.fa"
 
 /*
  * Splits the input file in chunks containing a single sequences,
