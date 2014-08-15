@@ -39,6 +39,6 @@ process align {
     input:
     file all_seq
 
-    "t_coffee $all_seq 2>&- | tee align_result"
+    "t_coffee $all_seq 2>/dev/null | tee align_result"
 }
 

@@ -36,5 +36,5 @@ process align {
     input:
     file sequences
 
-    "t_coffee $sequences 2>&- | tee align_result"
+    "t_coffee $sequences 2>/dev/null | tee align_result"
 }
