@@ -135,7 +135,7 @@ if( $debug != 0 ) {
 
 my(@names,@lengths,@sequences,$sequence_number,$protein);
 
-open(PROTEIN, "$input_file") or die "Cannot open the file: $!\n";  
+open(PROTEIN, "$input_file") or die "Cannot open '$input_file': $!\n";  
 
 #The program should read the user input sequence
 
@@ -185,8 +185,8 @@ if(!$noplot) {
 # Defines the value at the window center (window_size+1)/2
 
 sub sliding {
-    open(KD,">$data_file") or die("Could not open: $!\n");
-    open(RS,">$result_file") or die("Could not open: $!\n");
+    open(KD,">$data_file") or die("Could not open '$data_file': $!\n");
+    open(RS,">$result_file") or die("Could not open '$result_file': $!\n");
     my($center,$length);
     my $half = (($window_size + 1)/2);
 
