@@ -31,7 +31,7 @@ RUN wget -q ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blas
 RUN wget -q http://tcoffee.org/Packages/Stable/Version_11.00.8cbe486/linux/T-COFFEE_installer_Version_11.00.8cbe486_linux_x64.tar.gz; \
   tar xf T-COFFEE_installer_Version_11.00.8cbe486_linux_x64.tar.gz -C /opt; \
   mv /opt/T-COFFEE_installer_Version_11.00.8cbe486_linux_x64 /opt/tcoffee; \
-  mv /opt/tcoffee/plugins/linux/* /opt/tcoffee/bin/; \
+  rm -rf /opt/tcoffee/plugins/linux/*  \
   rm T-COFFEE_installer_Version_11.00.8cbe486_linux_x64.tar.gz; 
 
 #
