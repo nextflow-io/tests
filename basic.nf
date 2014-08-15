@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-params.in = "$HOME/sample.fa"
+params.in = "$baseDir/data/sample.fa"
 
 sequences = file(params.in)
 SPLIT = (System.properties['os.name'] == 'Mac OS X' ? 'gcsplit' : 'csplit')
