@@ -1,8 +1,8 @@
 #!/usr/bin/env nextflow
 import nextflow.Channel
 
-params.db = "$HOME/tools/blast-db/pdb/pdb"
-params.query = "$HOME/sample.fa"
+params.db = "$baseDir/blast-db/tiny"
+params.query = "$baseDir/data/sample.fa"
 params.chunkSize = 1
 
 DB = file(params.db)
