@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-params.in = '~/sample.fa'
+params.in = "$baseDir/data/sample.fa"
 SPLIT = (System.properties['os.name'] == 'Mac OS X' ? 'gcsplit' : 'csplit')
 
 process split {

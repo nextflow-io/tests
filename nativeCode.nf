@@ -2,7 +2,6 @@
 
 process nativeCode {
 
-
     input:
     val x from 'world'
 

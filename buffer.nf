@@ -1,5 +1,5 @@
 
-proteins = Channel.fromPath( "examples/data/p?.fa" ).buffer(size:2, remainder: true)
+proteins = Channel.fromPath( "$baseDir/data/p?.fa" ).buffer(size:2, remainder: true)
 
 process blastThemAll {
     echo true
