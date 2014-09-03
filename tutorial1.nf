@@ -1,10 +1,17 @@
-#!/usr/bin/env nextflow
-
+/* 
+ * Command line input parameter 
+ */
 params.in = "$baseDir/data/sample.fa"
 
+/* 
+ * Define the input file 
+ */
 sequences = file(params.in)
-SPLIT = (System.properties['os.name'] == 'Mac OS X' ? 'gcsplit' : 'csplit')
 
+
+/* 
+ * split a fasta file in multiple files 
+ */
 process splitSequences {
 
     input:
@@ -14,11 +21,14 @@ process splitSequences {
     file 'seq_*' into records
 
     """
-    $SPLIT input.fa '%^>%' '/^>/' '{*}' -f seq_
+    awk '/^>/{f="seq_"++d} {print > f}' < input.fa
     """
 
 }
 
+/* 
+ * Simple reverse the sequences 
+ */
 process reverse {
 
     input:
@@ -32,4 +42,7 @@ process reverse {
     """
 }
 
+/* 
+ * print the channel content 
+ */
 result.subscribe { println it }
