@@ -47,12 +47,12 @@ RUN apt-get install -qq -y samtools
 RUN wget -q -O bowtie.zip http://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.2.3/bowtie2-2.2.3-linux-x86_64.zip/download; \
   unzip bowtie.zip -d /opt/; \
   ln -s /opt/bowtie2-2.2.3/ /opt/bowtie; \
-  rm bowtie.zip; \
+  rm bowtie.zip 
   
 RUN wget -q http://ccb.jhu.edu/software/tophat/downloads/tophat-2.0.12.Linux_x86_64.tar.gz; \
   tar xf tophat-2.0.12.Linux_x86_64.tar.gz -C /opt/; \
   ln -s /opt/tophat-2.0.12.Linux_x86_64/ /opt/tophat; \
-  rm tophat-2.0.12.Linux_x86_64.tar.gz;
+  rm tophat-2.0.12.Linux_x86_64.tar.gz
   
 RUN wget -q http://cufflinks.cbcb.umd.edu/downloads/cufflinks-2.2.1.Linux_x86_64.tar.gz; \
   tar xf cufflinks-2.2.1.Linux_x86_64.tar.gz -C /opt/; \
