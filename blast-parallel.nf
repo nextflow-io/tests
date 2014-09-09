@@ -20,13 +20,19 @@
 
 params.db = "$baseDir/blast-db/tiny"
 params.query = "$baseDir/data/sample.fa"
+params.chunk = 1 
 
 db = file(params.db)
-fasta = Channel.fromPath(params.query).splitFasta()
+chunks = Channel
+            .fromPath(params.query)
+            .splitFasta(by: params.chunk)
 
+/* 
+ * Extends a BLAST query for each entry in the 'chunks' channel 
+ */
 process blast {
     input:
-    file 'query.fa' from fasta
+    file 'query.fa' from chunks
 
     output:
     file 'top_hits'
@@ -37,7 +43,9 @@ process blast {
     """
 }
 
-
+/*
+ * Find out the top 10 matches returned by the BLAST query
+ */ 
 process extract {
     input:
     file top_hits
@@ -48,9 +56,14 @@ process extract {
     "blastdbcmd -db ${db} -entry_batch top_hits | head -n 10 > sequences"
 }
 
-
+/*
+ * Collect all hits to a single file called  'all_seq'
+ */ 
 all_seq = sequences.collectFile(name:'all_seq')
 
+/*
+ * Aligns a T-Coffee MSA and print it 
+ */
 process align {
     echo true
 
