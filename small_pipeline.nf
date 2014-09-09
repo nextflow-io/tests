@@ -21,7 +21,6 @@
  */
 
 params.db = "$baseDir/blast-db/tiny"
-
 params.query = "$baseDir/data/sample.fa"
 
 db = file(params.db)
