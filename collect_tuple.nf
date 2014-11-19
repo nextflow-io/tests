@@ -18,21 +18,48 @@
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-process nativeCode {
-
-    input:
-    val x from 'world'
-
-    output:
-    val y into stream
-
-    exec:
-    y = "Hello $x"
-    println "workDir: ${task.workDir}"
-    task.workDir.resolve('file.txt').text = y
+/* 
+ * fake alignment step producing a BAM and BAI files
+ */
+process algn {
+  echo true
+  
+  input: 
+  each barcode from 'alpha', 'gamma' 
+  each seq_id from 'one', 'two', 'three' 
+  
+  output: 
+  set barcode, seq_id, file('bam'), file('bai') into algn_files 
+  
+  """
+  echo BAM $seq_id - $barcode > bam
+  echo BAI $seq_id - $barcode > bai
+  
+  """
 
 }
 
+/* 
+ * Collect all tuples with the same 'barcode' 
+ */
 
-stream.subscribe { println it }
+aggregation = algn_files.groupTuple()
 
+/*
+ * Finally merge the BAMs and BAIs with the same 'barcode' 
+ */ 
+
+process merge {
+  echo true
+
+  input: 
+  set barcode, seq_id, file(bam: 'bam?'), file(bai: 'bai?') from aggregation 
+  
+  """
+  echo barcode: $barcode
+  echo seq_ids: $seq_id  
+  echo bam    : $bam
+  echo bai    : $bai
+  """
+
+}

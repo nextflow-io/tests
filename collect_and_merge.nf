@@ -20,7 +20,7 @@
 
 /* 
  * fake alignment step producing a BAM and BAI files
- */ 
+ */
 process algn {
   echo true
   
@@ -48,17 +48,19 @@ aggregation = algn_files
                 .reduce([:]) { map, tuple ->    // 'map' is used to collect all values; 'tuple' is the record containing four items: barcode, seqid, bam file and bai file
                     def barcode = tuple[0]      // the first item is the 'barcode'                   
                     def group = map[barcode]    // get the aggregation for current 'barcode' 
-                    if( !group ) group = [ barcode, [], [], [] ]    // if new, create a new entry 
+                    if( !group ) group = [ barcode, [], [], [] ]    // if new, create a new entry
                     group[1] << tuple[1]        // append 'seq_id' to the aggregation list
                     group[2] << tuple[2]        // append 'bam' file to the aggregation list 
                     group[3] << tuple[3]        // append 'bai' file to the aggregation list 
-                    map[barcode] = group        // set back into the map 
+                    map[barcode] = group        // set back into the map
                     return map                  // return it so that it will be used in the next iteration
                 }
                 .flatMap { it.values() }        // tricky part: get the list of values of in the map, each value is the 
                                                 // aggregation build above 
                                                 // the 'flatMap' emits each of these aggregation list as a single item
 
+                .map { it.collect {  it instanceof Collection ? it.sort() : it }   }
+  
 /*
  * Finally merge the BAMs and BAIs with the same 'barcode' 
  */ 
