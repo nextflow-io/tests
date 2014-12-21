@@ -19,7 +19,7 @@
  */
 
 list1 = [1,2]
-list2 = ['Hola', 'mundo']
+list2 = ['Hola', 'Ciao']
 list3 = ['alpha','beta','delta']
 
 process hola {
