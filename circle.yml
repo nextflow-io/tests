@@ -3,7 +3,12 @@ machine:
     version: openjdk7
   services:
     - docker
-    
+  
+general:
+  branches:
+    only:
+      - master
+          
 test:
   override:
     - curl -fsSL get.nextflow.io | bash
