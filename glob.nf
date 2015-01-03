@@ -17,20 +17,25 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
-cheers = Channel.from 'Hello', 'Ciao', 'Hola'
 
-process storeCache  {
-    storeDir 'cache'
-
-    input:
-    val cheers
+process recurseDir {
 
     output:
-    file { "${cheers}.txt" } into salut
+    file 'folder/**.fa' into result1
+    file 'folder/**/*.txt' into result2
 
-    "printf $cheers > ${cheers}.txt"
+    """
+    mkdir -p folder/x
+    mkdir -p folder/y
+    touch folder/file1.txt
+    touch folder/file2.fa
+    touch folder/x/file3.fa
+    touch folder/y/file4.fa
+    touch folder/y/file5.txt
+    """
 
 }
 
-salut.subscribe { println it }
+
+result1.flatten().subscribe { println "result1: " + it.name }
+result2.flatten().subscribe { println "result2: " + it.name }

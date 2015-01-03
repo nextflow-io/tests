@@ -22,6 +22,8 @@ process dotModule {
     module 'x'
     module 'y'
 
+    beforeScript 'module purge'
+
     '''
     echo $PATH
     '''
