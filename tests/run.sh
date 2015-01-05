@@ -34,19 +34,25 @@ export NXF_WORK=$PWD/scratch
 rm -rf $NXF_WORK
 
 
-function run() {
+function run_checks() {
   NXF_SCRIPT="../../$1"
   NXF_RUN="$NXF_CMD -q run $NXF_SCRIPT"
   [[ $WITH_DOCKER ]] && NXF_RUN="$NXF_RUN -with-docker" 
-  set +e             
-  if [ -f .checks ]; then 
-     export NXF_SCRIPT
-     export NXF_CMD
-     export NXF_RUN
+  export NXF_SCRIPT
+  export NXF_CMD
+  export NXF_RUN
+  set +e   
+            
+  if [ -f $1/.checks ]; then 
+     cd $basename; 
+     rm -rf *
      bash -ex .checks &> checks.out
-  else 
-     $NXF_CMD run $NXF_SCRIPT > checks.out
+  else
+     mkdir -p $1
+     cd $1
+     $NXF_CMD run $NXF_SCRIPT > checks.out 
   fi
+  
   ret=$?
   set -e
   if [[ $ret != 0 ]]; then 
@@ -64,17 +70,14 @@ list=${1:-'../*.nf'}
 
 for x in $list; do
   basename=$(basename $x)
-  if [ -d $basename ]; then
-    echo "> Launching test: $basename"
+  if [[ `grep -c "$basename" .ignore` == 0 ]]; then 
+    echo "> Running test: $basename"
     ( set -e; 
-      cd $basename; 
-      rm -rf *
-      run $basename 
-      )
-  else 
-    echo_yellow "WARN: No test for '$basename'"
-  fi
-  
+      run_checks $basename 
+    )
+  else
+    echo "- Ignoring test: $basename" 
+  fi  
 done
 
 if [[ -s $REPORT ]]; then
