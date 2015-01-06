@@ -1,20 +1,15 @@
-FROM debian:wheezy
+FROM pditommaso/dkrbase:1.1
+
 MAINTAINER Paolo Di Tommaso <paolo.ditommaso@gmail.com>
 
-RUN apt-get update --fix-missing && \
-  apt-get install -q -y bc wget curl vim nano unzip make gcc g++ gfortran gnuplot python && \
-  apt-get clean 
+RUN apt-get install -q -y gnuplot && apt-get clean 
 
 #
-# Create the home folder 
+# Required PERL moduls
 #
-RUN mkdir -p /root
-ENV HOME /root
+RUN cpanm Math::CDF Math::Round && \
+  rm -rf /root/.cpanm/work/
 
-RUN wget -q cpanmin.us -O /usr/local/bin/cpanm && \
-  chmod +x /usr/local/bin/cpanm 
-
-RUN cpanm Math::CDF Math::Round;
 
 #
 # BLAST
