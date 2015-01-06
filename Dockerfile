@@ -2,7 +2,7 @@ FROM pditommaso/dkrbase:1.1
 
 MAINTAINER Paolo Di Tommaso <paolo.ditommaso@gmail.com>
 
-RUN apt-get install -q -y gnuplot && apt-get clean 
+RUN apt-get install -q -y gnuplot python && apt-get clean 
 
 #
 # Required PERL moduls
