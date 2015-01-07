@@ -36,10 +36,10 @@ In order to use it add the option `-with-docker` to Nextflow run command line, f
 
 More comprehensive examples are avaible in the following repositories: 
 
-* [RNA-toy](https://github.com/nextflow-io/rnatoy) A basic RNA-Seq pipeline
-* [Piper-nf](https://github.com/cbcrg/piper-nf) A RNA mapping pipeline 
-* [MTA-nf](https://github.com/cbcrg/mta-nf) A method for best alignment of evaluation trees
-* [Ampa-nf](https://github.com/cbcrg/ampa-nf) An automated prediction of protein antimicrobial regions
-* [Grape-nf](https://github.com/cbcrg/grape-nf) Yet another RNA-Seq pipeline
+* [RNA-toy](https://github.com/nextflow-io/rnatoy) - A basic RNA-Seq pipeline
+* [Piper-nf](https://github.com/cbcrg/piper-nf) - A RNA mapping pipeline 
+* [MTA-nf](https://github.com/cbcrg/mta-nf) - A method for best alignment of evaluation trees
+* [Ampa-nf](https://github.com/cbcrg/ampa-nf) - An automated prediction of protein antimicrobial regions
+* [Grape-nf](https://github.com/cbcrg/grape-nf) - Yet another RNA-Seq pipeline
     
 
