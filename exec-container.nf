@@ -17,49 +17,27 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+params.in = "$baseDir/data/sample.fa"
+fasta = file(params.in)
 
-/* 
- * fake alignment step producing a BAM and BAI files
- */
-process algn {
-  echo true
+process tcoffee {
+  container true 
   
-  input: 
-  each barcode from 'alpha', 'gamma' 
-  each seq_id from 'one', 'two', 'three' 
+  input:
+  file fasta 
   
   output: 
-  set barcode, seq_id, file('bam'), file('bai') into algn_files 
+  file 'result.fa' into result
   
   """
-  echo BAM $seq_id - $barcode > bam
-  echo BAI $seq_id - $barcode > bai
-  
+  # define box inputs
+  CONT_INPUT_FASTA=$fasta
+  CONT_OUTPUT_FILE=result.fa
+  # launch box run
+  nextflow/tcoffee
   """
 
 }
 
-/* 
- * Collect all tuples with the same 'barcode' 
- */
-
-aggregation = algn_files.groupTuple()
-
-/*
- * Finally merge the BAMs and BAIs with the same 'barcode' 
- */ 
-
-process merge {
-  echo true
-
-  input: 
-  set barcode, seq_id, file(bam: 'bam?'), file(bai: 'bai?') from aggregation 
-  
-  """
-  echo barcode: $barcode
-  echo seq_ids: $seq_id  
-  echo bam    : $bam
-  echo bai    : $bai
-  """
-
-}
+result.println { it.text } 
