@@ -1,0 +1,21 @@
+set -e
+
+#
+# run normal mode
+#
+echo ''
+$NXF_RUN -c $PWD/.nextflow.config | tee stdout
+
+grep -c 'Submitted process > test (My Tool)' .nextflow.log
+grep 'Hola' stdout
+
+
+#
+# run resume mode
+#
+echo ''
+$NXF_RUN -c $PWD/.nextflow.config -resume| tee stdout
+
+grep -c 'Cached process > test (My Tool)' .nextflow.log
+grep 'Hola' stdout
+
