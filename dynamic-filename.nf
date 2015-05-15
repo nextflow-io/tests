@@ -26,10 +26,10 @@ process foo {
 
   input: 
   each x from 'alpha', 'delta', 'gamma', 'omega'
-  file { "${params.prefix}_${x}.txt" } from data
+  file "${params.prefix}_${x}.txt" from data
   
   output: 
-  file { "${params.prefix}_${x}.txt" } into result
+  file "${params.prefix}_${x}.txt" into result
   
   """
   echo World >>  ${params.prefix}_${x}.txt

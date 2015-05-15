@@ -18,28 +18,17 @@
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-params.prefix = 'my'
-
-data = 'Hello\n'
+params.ext = 'fastq'
 
 process foo {
-
-  storeDir "cache/$x" 
+  echo true 
+  tag "${barcode}.${params.ext}"
 
   input: 
-  each x from 'alpha', 'delta', 'gamma', 'omega'
-  file 'result.txt' from data
-  
-  output: 
-  set x, file('result.txt') into result
+  each barcode from 'alpha', 'delta', 'gamma', 'omega'
   
   """
-  echo World >> result.txt
+  echo $barcode
   """
 
-}
-
-result.subscribe { code, file -> 
-  println "~ Result ${file}"
-  file.copyTo("my_${code}.txt")
 }

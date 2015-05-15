@@ -1,4 +1,8 @@
 .nextflow.log*
+.nextflow.history*
 .vagrant
 Vagrantfile
+scratch
 work
+**/checks.out
+**/stdout
