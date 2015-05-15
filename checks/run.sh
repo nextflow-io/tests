@@ -1,6 +1,6 @@
 #!/bin/bash 
 set -u 
-
+trap "exit" INT
 
 NORMAL=$(tput sgr0)
 GREEN=$(tput setaf 2; tput bold)
