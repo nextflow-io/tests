@@ -17,15 +17,25 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 echo true
 
-process foo {
-  input: 
-    each x from 'alpha','omega'
+list = 'alpha,delta,gamma'.tokenize(',')
 
-  shell: 
-    '''
-    echo Home: $HOME - Input: !{x}
-    '''
+process foo {
+  input:
+  each x from list   
+  
+  script:
+  template(task.command)
+
+}
+
+
+process bar {
+  input:
+  each x from list   
+  
+  script: 
+  template(task.command)
 }

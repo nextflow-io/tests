@@ -18,14 +18,14 @@
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-echo true
-
 process foo {
   input: 
-    each x from 'alpha','omega'
-
-  shell: 
-    '''
-    echo Home: $HOME - Input: !{x}
-    '''
+    val family from 'PF00389', 'PF03061', 'PF02826'
+  output: 
+    file 'file.out' into results
+     	
+  script:
+  template 'bash-script.txt'
 }
+
+results.print { it.text }
