@@ -36,8 +36,7 @@ rm -rf $NXF_WORK
 
 function run_checks() {
   NXF_SCRIPT="../../$1"
-  NXF_RUN="$NXF_CMD -q run $NXF_SCRIPT"
-  [[ $WITH_DOCKER ]] && NXF_RUN="$NXF_RUN -with-docker" 
+  NXF_RUN="$NXF_CMD -q run $NXF_SCRIPT" 
   export NXF_SCRIPT
   export NXF_CMD
   export NXF_RUN

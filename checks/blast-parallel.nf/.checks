@@ -3,7 +3,7 @@ set -e
 #
 # run normal mode
 #
-$NXF_RUN > stdout
+$NXF_RUN $WITH_DOCKER > stdout
 
 [[ `grep INFO .nextflow.log | grep -c 'Submitted process > blast'` == 5 ]] || false
 [[ `grep INFO .nextflow.log | grep -c 'Submitted process > extract'` == 5 ]] || false
@@ -12,7 +12,7 @@ $NXF_RUN > stdout
 #
 # run resume mode
 #
-$NXF_RUN -resume > stdout
+$NXF_RUN $WITH_DOCKER -resume > stdout
 
 [[ `grep INFO .nextflow.log | grep -c 'Cached process > blast'` == 5 ]] || false
 [[ `grep INFO .nextflow.log | grep -c 'Cached process > extract'` == 5 ]] || false
