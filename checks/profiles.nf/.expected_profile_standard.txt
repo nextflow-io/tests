@@ -1,0 +1,5 @@
+process {
+	cpus=2
+	memory='2GB'
+}
+echo=true

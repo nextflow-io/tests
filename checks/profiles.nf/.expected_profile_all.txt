@@ -1,0 +1,16 @@
+echo=true
+profiles {
+	standard {
+		process {
+			cpus=2
+			memory='2GB'
+		}
+	}
+	advanced {
+		process {
+			cpus=8
+			memory='10GB'
+			disk='300GB'
+		}
+	}
+}
