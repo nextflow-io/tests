@@ -1,3 +1,4 @@
+#!/usr/bin/env nextflow
 /*
  * Copyright (c) 2013-2015, Centre for Genomic Regulation (CRG).
  * Copyright (c) 2013-2015, Paolo Di Tommaso and the respective authors.
@@ -17,38 +18,20 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+ /* 
+  * Run a process using a S3 file as input 
+  */
 
 echo true
-items = [0,1,2,3,4]
-decode = ['zero','one','two','three','fourth']
+
+bucket = file('s3://cbcrg-eu/ggal/ggal_1_48850000_49020000.bed.gff')
 
 process foo {
-    tag "${decode[x]}"
-    
-    input: 
-    val x from items 
-    
-    when: 
-    x >= 3
+  input:
+  file(obj) from bucket
 
-    script:
-    """
-    echo Foo $x
-    """
-}
-
-
-process bar {
-    tag "${decode[x]}"
-    
-    input: 
-    val x from items 
-    
-    when:
-    x < 3
-
-    script:
-    """
-    echo Bar $x
-    """
+  """
+  cat $obj | head
+  """
 }

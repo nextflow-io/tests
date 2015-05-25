@@ -20,6 +20,9 @@
 
 
 /*
+ * Verify that variable defined in the configuration file
+ * context can be accessed in the process script
+ *
  * author Emilio Palumbo
  */
 
