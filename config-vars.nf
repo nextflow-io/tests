@@ -33,7 +33,7 @@ process foo {
   echo true
  
   script:
-  t = task.out.join(',')
+  t = task.ext.out.join(',')
   """
   echo foo ${t}
   """
@@ -45,7 +45,7 @@ process bar {
   echo true
  
   shell:
-  t = task.out.join(',')
+  t = task.ext.out.join(',')
   
   '''
   echo bar !{t}
