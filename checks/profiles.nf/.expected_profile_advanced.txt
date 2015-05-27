@@ -4,3 +4,4 @@ process {
 	disk='300GB'
 }
 echo=true
+foo='bar'

@@ -3,3 +3,4 @@ process {
 	memory='2GB'
 }
 echo=true
+foo='bar'
