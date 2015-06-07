@@ -17,8 +17,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
-echo true
+
+echo true 
+params.data = 'zzz' 
 
 process foo {
   input: 
@@ -26,6 +27,6 @@ process foo {
 
   shell: 
     '''
-    echo Home: $HOME - Input: !{x}
+    echo Home: $HOME - Input: !{x} !{params.data}
     '''
 }

@@ -4,8 +4,8 @@
 $NXF_RUN | tee stdout
 
 [[ `grep INFO .nextflow.log | grep -c 'Submitted process'` == 2 ]] || false
-< stdout grep "Home: $HOME - Input: alpha" || false
-< stdout grep "Home: $HOME - Input: omega" || false
+< stdout grep "Home: $HOME - Input: alpha zzz" || false
+< stdout grep "Home: $HOME - Input: omega zzz" || false
 
 
 #
@@ -14,7 +14,7 @@ $NXF_RUN | tee stdout
 $NXF_RUN -resume | tee stdout
 
 [[ `grep INFO .nextflow.log | grep -c 'Cached process'` == 2 ]] || false
-< stdout grep "Home: $HOME - Input: alpha" || false
-< stdout grep "Home: $HOME - Input: omega" || false
+< stdout grep "Home: $HOME - Input: alpha zzz" || false
+< stdout grep "Home: $HOME - Input: omega zzz" || false
 
 
