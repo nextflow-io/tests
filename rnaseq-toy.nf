@@ -31,25 +31,28 @@ params.genome = "$baseDir/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.f
  * emits all reads ending with "_1" suffix and map them to pair containing the common
  * part of the name
  */
-reads1 = Channel
+Channel
     .fromPath( params.pair1 )
-    .map {  path -> [ path.baseName[0..-2], path ] }
+    .map {  path -> tuple(path.baseName[0..-2], path) }
+    .set { reads1 }
   
 /*
  * as above for "_2" read pairs
  */
-reads2 = Channel
+Channel
     .fromPath( params.pair2 )
-    .map {  path -> [ path.baseName[0..-2], path ] }
-     
+    .map {  path -> tuple(path.baseName[0..-2], path) }
+	.set { reads2 }
+	     
 /*
  * Match the pairs emittedb by "read1" and "read2" channels having the same 'key'
  * and emit a new pair containing the expected read-pair files
  */
-read_pairs = reads1
-        .phase(reads2)
-        .map { pair1, pair2 -> [ pair1[0], pair1[1], pair2[1] ] }
- 
+reads1
+	.phase(reads2)
+	.map { pair1, pair2 -> tuple(pair1[0], pair1[1], pair2[1]) }
+	.set { read_pairs } 
+	
 /*
  * the reference genome file
  */
@@ -110,8 +113,6 @@ process makeTranscript {
  * Step 4. Collects the trabscripts files and print them
  */
 transcripts
-  .collectFile() {
-     [ "${it[0]}transcript", it[1] ]
-  }
-  .subscribe { println it }
+  .collectFile { tuple("${it[0]}transcript", it[1]) }
+  .println { "Transcript model: $it" }
   
