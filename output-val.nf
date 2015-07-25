@@ -18,50 +18,27 @@
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-echo true
+x = 100
+y = 200
 
-process sayhello {
+process foo {
+  input: 
+  file fastq from 'dummy'
 
-    input:
-    val x from (['hello','hi'])
+  output: 
+  val 'Hello' into str_channel 
+  val "${fastq.baseName}-${x}.out" into exp_channel
+  val x into x_channel
+  val y into y_channel
 
-    output:
-    val y into all
+  script:
+  y = 'two hundred'
+  """
+  echo bar 
+  """
+} 
 
-    share:
-    val y from 'world' into z
-
-    """
-    echo '$x $y!'
-    """
-}
-
-z.subscribe { println "Complete: $it" }
-
-all.subscribe { println "All: $it" }
-
-
-process inc {
-    echo true
-
-    input:
-        val time from 1,2,3,4
-
-    share:
-        val x from 0
-        val y from 10
-        val w from '.'
-
-
-    script:
-        x++
-        y++
-        w+='.'
-
-        """
-        echo x: $x
-        echo y: $y
-        echo w: $w
-        """
-
-}
+x_channel.println { "x: $it" }
+y_channel.println { "y: $it" }
+str_channel.println { "str: $it" }
+exp_channel.println { "exp: $it" }
