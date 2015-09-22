@@ -1,8 +1,8 @@
-FROM pditommaso/dkrbase:1.1
+FROM pditommaso/dkrbase:1.2
 
 MAINTAINER Paolo Di Tommaso <paolo.ditommaso@gmail.com>
 
-RUN apt-get install -q -y gnuplot python && apt-get clean 
+RUN apt-get update -y && apt-get install -q -y gnuplot python && apt-get clean 
 
 #
 # Required PERL moduls
@@ -38,5 +38,5 @@ ADD bin/AMPA.pl /usr/local/bin/
 #
 # Configure the env
 #
-ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/ncbi-blast-2.2.29+/bin:/opt/tcoffee/bin
+ENV PATH="$PATH:/opt/ncbi-blast-2.2.29+/bin:/opt/tcoffee/bin"
 
