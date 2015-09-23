@@ -66,7 +66,6 @@ all_seq = sequences.collectFile(name:'all_seq')
  */
 process align {
     echo true
-    cache 'deep'
 
     input:
     file all_seq
