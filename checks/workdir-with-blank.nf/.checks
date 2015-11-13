@@ -20,6 +20,8 @@ $NXF_RUN -w "$PWD/w o r k d i r" -process.scratch true > stdout
 #
 # the same using Docker 
 #
-echo ''
-$NXF_RUN $WITH_DOCKER -w "$PWD/w o r k d i r" > stdout
-[[ `grep 'INFO' .nextflow.log | grep -c 'Submitted process > foo'` == 3 ]] || false
+# Disabled - See https://github.com/docker/docker/issues/17967
+#echo ''
+#$NXF_RUN $WITH_DOCKER -w "$PWD/w o r k d i r" > stdout
+#[[ `grep 'INFO' .nextflow.log | grep -c 'Submitted process > foo'` == 3 ]] || false
+#
