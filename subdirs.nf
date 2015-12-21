@@ -4,10 +4,10 @@ process foo {
     echo true
     
     input:
-    file '/dir1/link_*.fasta' from seqs.toList() 
+    file 'dir1/link_*.fasta' from seqs.toList() 
     
     output: 
-    file '/dir2/*' into result mode flatten
+    file 'dir2/*' into result mode flatten
     
     '''
     ls dir1 | sort
