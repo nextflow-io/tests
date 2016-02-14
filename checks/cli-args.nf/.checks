@@ -1,0 +1,18 @@
+set -e
+
+#
+# run normal mode
+#
+echo ''
+$NXF_RUN --alpha uno --beta \* --delta 'x_{1,2}.fasta' --gamma hello\ world a b c | tee stdout
+
+< stdout grep -F 'alpha: uno'
+< stdout grep -F 'beta : *' 
+< stdout grep -F 'delta: x_{1,2}.fasta' 
+< stdout grep -F 'gamma: hello world' 
+< stdout grep -F 'args : a_b_c' 
+
+
+
+
+

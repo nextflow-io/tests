@@ -1,0 +1,5 @@
+println "alpha: ${params.alpha}"
+println "beta : ${params.beta}"
+println "delta: ${params.delta}"
+println "gamma: ${params.gamma}"
+println "args : ${args.join('_')}"
