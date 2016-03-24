@@ -32,4 +32,4 @@ NXF_CLUSTER_SHUTDOWNONCOMPLETE='true' $NXF_RUN -process.executor ignite -resume 
 # Check worker hs stopped
 #
 sleep 1 
-[[ `< .node-nextflow.log grep -c 'SPI stopped ok'` == 1 ]] || false
+[[ `< .node-nextflow.log grep -c 'SPI stopped ok'` > 0 ]] || false
