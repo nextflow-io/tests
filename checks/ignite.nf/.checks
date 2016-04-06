@@ -10,7 +10,7 @@ $NXF_RUN -process.executor ignite | tee stdout
 # Launch a nextflow daemon in background  
 # 
 $NXF_CMD node & 
-sleep 5 
+sleep 10 
 [[ `< .node-nextflow.log grep -c 'ROLE=worker'` == 1 ]] || false
 
 #
