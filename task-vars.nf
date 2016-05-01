@@ -27,7 +27,13 @@ process printVars {
     time '1 day'
     memory '1GB'
 
+    input:
+    each x from 1,2,3
+
     """
+    echo indx: ${task.index}
+    echo proc: ${task.process}
+    echo exec: ${task.executor}
     echo cpus: ${task.cpus}
     echo penv: ${task.penv}
     echo time: ${task.time}
