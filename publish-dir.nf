@@ -53,3 +53,17 @@ process combine {
 }
 
 result.subscribe { println it.text }
+
+process foo {
+  publishDir 'data', mode: 'link'
+  output:
+  file 'xxx'
+  
+  '''
+  mkdir xxx 
+  touch xxx/A
+  touch xxx/B
+  touch xxx/C
+  '''
+}
+

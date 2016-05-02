@@ -14,6 +14,10 @@ cmp stdout .expected || false
 [[ -f data/delta.bai ]] || false
 [[ -f data/delta.bam ]] || false
 [[ -L data/result.txt ]] || false
+[[ -f data/xxx/A ]] || false
+[[ -f data/xxx/B ]] || false
+[[ -f data/xxx/C ]] || false
+
 
 rm -rf data
 
@@ -32,3 +36,6 @@ cmp stdout .expected || false
 [[ -f data/delta.bai ]] || false
 [[ -f data/delta.bam ]] || false
 [[ -L data/result.txt ]] || false
+[[ -f data/xxx/A ]] || false
+[[ -f data/xxx/B ]] || false
+[[ -f data/xxx/C ]] || false
