@@ -35,7 +35,7 @@ $NXF_RUN --command xxx > stdout || true
 echo ''
 $NXF_CMD run nextflow-io/hello > stdout
 
-[[ `grep 'INFO' .nextflow.log | grep -c 'Submitted process > sayHello'` == 5 ]] || false
+[[ `grep 'INFO' .nextflow.log | grep -c 'Submitted process > sayHello'` == 4 ]] || false
 
 [[ `grep -c 'DONE' stdout` == 1 ]] || false
 [[ `grep -c 'command: null' stdout` == 1 ]] || false
