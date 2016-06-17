@@ -23,12 +23,8 @@ echo true
 
 process foo {
   errorStrategy 'finish'
-
-  input:
-  each x from 1,2,3
-  
-  output: 
-  stdout into results
+  input:  each x from 1,2,3
+  output: stdout into results
 
   script:
   if( x != 3 )
@@ -40,6 +36,15 @@ process foo {
   """
     exit 99
   """
+}
+
+process bar {
+  input:  file 'x' from results
+
+  script:
+  '''
+  cat x
+  '''
 }
 
 
