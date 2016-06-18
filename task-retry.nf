@@ -1,4 +1,3 @@
-#!/usr/bin/env nextflow
 /*
  * Copyright (c) 2013-2016, Centre for Genomic Regulation (CRG).
  * Copyright (c) 2013-2016, Paolo Di Tommaso and the respective authors.
@@ -22,33 +21,21 @@
 echo true
 
 process foo {
-  errorStrategy 'finish'
-  input:  each x from 1,2,3
-  output: stdout into results
 
-  script:
-  if( x != 3 )
-  """
-    echo run_$x  
-	sleep 5
-  """
-  else
-  """
-    exit 99
-  """
-}
+    errorStrategy { task.exitStatus == 5 && task.attempt<3 ? 'retry' : 'terminate' }
+    maxErrors 10
+    maxRetries 10
 
-process bar {
-  input:  file 'x' from results
+    script:
+    """
+    if [[ -f $PWD/marker ]]; then
+    	echo DONE 
+    	exit 0
+    else 
+    	echo FAIL
+    	touch $PWD/marker 
+    	exit 5; 
+    fi  
+    """
 
-  script:
-  '''
-  cat x
-  '''
-}
-
-
-workflow.onError {
-  println "success: $workflow.success"
-  println "exitStatus: $workflow.exitStatus"
 }

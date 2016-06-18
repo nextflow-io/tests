@@ -23,7 +23,7 @@ process foo {
 
     memory { def x=task.attempt * 1.GB; println "attempt: $task.attempt; memory: $x"; return x }
     time { def x=1.h * task.attempt; println "attempt: $task.attempt; time: $x"; return x }
-    errorStrategy { task.exitStatus == 5 && task.attempt<=3 ? 'retry' : 'terminate' }
+    errorStrategy { task.exitStatus == 5 && task.attempt<3 ? 'retry' : 'terminate' }
     maxErrors 10
     maxRetries 10
 
