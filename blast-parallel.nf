@@ -35,7 +35,7 @@ process blast {
     file 'query.fa' from chunks
 
     output:
-    file 'top_hits'
+    file top_hits
 
     """
     blastp -db ${db} -query query.fa -outfmt 6 > blast_result
@@ -51,7 +51,7 @@ process extract {
     file top_hits
 
     output:
-    file 'sequences'
+    file sequences
 
     "blastdbcmd -db ${db} -entry_batch top_hits | head -n 10 > sequences"
 }
