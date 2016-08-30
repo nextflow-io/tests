@@ -39,6 +39,6 @@ NXF_CLUSTER_SHUTDOWNONCOMPLETE='true' $NXF_RUN -process.executor ignite -resume 
 #
 # Check worker has stopped
 #
-sleep 1 
-[[ `< .node-nextflow.log grep -c 'SPI stopped ok'` > 0 ]] || false
+sleep 5 
+[[ `< .node-nextflow.log egrep -c 'Ignite .* stopped OK'` > 0 ]] || false
 [[ `< .node-nextflow.log grep -c 'Added new node to topology'` > 0 ]] || false 
