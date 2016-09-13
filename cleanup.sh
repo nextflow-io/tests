@@ -1,5 +1,6 @@
-find . -name stdout | xrgs rm
-find . -name .stdout | xrgs rm
+find . -name stdout | xargs rm
+find . -name .stdout | xargs rm
 find . -name checks.out | xargs rm
 find . -name .cache | xargs rm -rf
-find . -name .nextflow* | xargs rm 
+find . -name '.nextflow*' | xargs rm 
+rm -rf checks/escape-globs.nf/[work-dir]/
