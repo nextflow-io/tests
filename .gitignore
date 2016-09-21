@@ -1,3 +1,4 @@
+.cache
 .nextflow.log*
 .nextflow.history*
 .vagrant
