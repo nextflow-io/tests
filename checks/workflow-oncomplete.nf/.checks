@@ -35,12 +35,12 @@ $NXF_RUN -name second --command xxx > stdout || true
 # Third run download the script from Github and test `repository` and `revision` are set
 #
 echo ''
-$NXF_CMD run nextflow-io/hello -name third > stdout
+$NXF_CMD run nextflow-io/hello -name third --command hola > stdout
 
 [[ `grep 'INFO' .nextflow.log | grep -c 'Submitted process > sayHello'` == 4 ]] || false
 
 [[ `grep -c 'DONE' stdout` == 1 ]] || false
-[[ `grep -c 'command: null' stdout` == 1 ]] || false
+[[ `grep -c 'command: hola' stdout` == 1 ]] || false
 [[ `grep -c 'revision: master' stdout` == 1 ]] || false
 [[ `grep -c 'repository: https://github.com/nextflow-io/hello.git' stdout` == 1 ]] || false
 [[ `grep -c 'success: true' stdout` == 1 ]] || false
