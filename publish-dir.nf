@@ -24,7 +24,7 @@ process align {
     publishDir 'data', mode: 'copy'
 
     input:
-    set val(x) from input
+    val(x) from input
 
     output:
     file("*.bam") into bam
