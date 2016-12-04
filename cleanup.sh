@@ -1,3 +1,4 @@
+find . -name .report | xargs rm
 find . -name stdout | xargs rm
 find . -name .stdout | xargs rm
 find . -name checks.out | xargs rm
