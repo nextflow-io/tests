@@ -6,7 +6,7 @@ set -e
 echo ''
 $NXF_RUN | tee stdout
 
-[[ `grep 'INFO' .nextflow.log | grep -c 'Submitted process > sayhello (1)'` == 1 ]] || false
+[[ `grep 'INFO' .nextflow.log | grep -c 'Submitted process > sayhello'` == 1 ]] || false
 [[ `grep -c 'Hello world!' stdout` == 1 ]] || false
 
 
@@ -16,5 +16,5 @@ $NXF_RUN | tee stdout
 echo ''
 $NXF_RUN -resume | tee stdout
 
-[[ `grep 'INFO' .nextflow.log | grep -c 'Cached process > sayhello (1)'` == 1 ]] || false
+[[ `grep 'INFO' .nextflow.log | grep -c 'Cached process > sayhello'` == 1 ]] || false
 [[ `grep -c 'Hello world!' stdout` == 1 ]] || false
