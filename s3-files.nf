@@ -23,15 +23,27 @@
   * Run a process using a S3 file as input 
   */
 
-echo true
 
-bucket = file('s3://cbcrg-eu/ggal/ggal_1_48850000_49020000.bed.gff')
+s3file = file('s3://cbcrg-eu/ggal/ggal_1_48850000_49020000.bed.gff')
+s3glob = Channel.fromFilePairs('s3://cbcrg-eu/ggal/*_{1,2}.fq')
 
 process foo {
+  echo true
   input:
-  file(obj) from bucket
+  file(obj) from s3file
 
   """
   cat $obj | head
   """
+}
+
+process bar {
+  tag "$pair"
+  input:
+  set pair, file(obj) from s3glob
+
+  """
+  cat $obj | head
+  """
+
 }
