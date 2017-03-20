@@ -59,7 +59,7 @@ process buildIndex {
  */
 process mapping {     
     input:
-    file genome genome_file
+    file genome from genome_file
     file index from genome_index
     set pair_id, file(reads) from read_pairs
  
