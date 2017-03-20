@@ -40,8 +40,8 @@ process combine {
     publishDir 'data'
 
     input:
-    file(bamfile) from bam.toSortedList { it.name }
-    file(baifile) from bai.toSortedList { it.name }
+    file(bamfile) from bam.collect()
+    file(baifile) from bai.collect()
 
     output:
     file 'result.txt' into result
