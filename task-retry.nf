@@ -21,7 +21,8 @@
 echo true
 
 process foo {
-
+    time { 1.h * task.attempt }
+    memory { 1.GB * task.attempt }
     errorStrategy { task.exitStatus == 5 && task.attempt<3 ? 'retry' : 'terminate' }
     maxErrors 10
     maxRetries 10
@@ -29,7 +30,7 @@ process foo {
     script:
     """
     if [[ -f $PWD/marker ]]; then
-    	echo DONE 
+    	echo DONE - mem: $task.memory - time: $task.time
     	exit 0
     else 
     	echo FAIL

@@ -17,13 +17,13 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
+echo true
 
 list1 = [1,2]
 list2 = ['Hola', 'Ciao']
 list3 = ['alpha','beta','delta']
 
 process hola {
-    echo true
 
     input:
     val x from list1
@@ -34,4 +34,15 @@ process hola {
     echo 'x: $x; y: $y; z: $z'
     """
 
+}
+
+process foo {
+    echo true
+
+    input:
+    each v from Channel.from([["a","b"],["c","d"]])
+
+    """
+    echo foo $v
+    """
 }
