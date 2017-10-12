@@ -7,6 +7,9 @@ before_install:
 - sudo pip install awscli
 git:
   submodules: false
+branches:
+  only:
+  - master  
 before_script:
 - rm $HOME/.gitconfig
 - mkdir "$HOME/.nextflow" && echo "providers.github.auth='$NXF_GITHUB_ACCESS_TOKEN'" > "$HOME/.nextflow/scm"
