@@ -18,7 +18,13 @@
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-proteins = Channel.fromPath( "$baseDir/data/p?.fa" ).buffer(size:2, remainder: true)
+Channel
+    .fromPath("$baseDir/data/p?.fa")
+    .toSortedList()
+    .flatten()
+    .buffer(size:2, remainder: true)
+    .set { proteins } 
+
 
 process blastThemAll {
     echo true
