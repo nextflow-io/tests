@@ -1,5 +1,6 @@
 echo = true
 foo = 'bar'
+
 profiles {
    advanced {
       process {
@@ -15,4 +16,3 @@ profiles {
       }
    }
 }
-
