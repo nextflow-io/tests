@@ -1,7 +1,8 @@
+echo = true
+foo = 'bar'
+
 process {
-	cpus=8
-	memory='10GB'
-	disk='300GB'
+   cpus = 8
+   disk = '300GB'
+   memory = '10GB'
 }
-echo=true
-foo='bar'
