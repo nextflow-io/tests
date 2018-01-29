@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -17,15 +18,15 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 echo true
 
 cheers = Channel.from 'Bojour', 'Ciao', 'Hello', 'Hola', 'Γεια σου'
 
 process sayHello {
-  input: 
+  input:
   val x from cheers
-  
+
   """
   echo '$x world!'
   """

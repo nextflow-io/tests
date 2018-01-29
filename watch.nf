@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -25,19 +26,19 @@ fasta = Channel.watchPath(params.files, params.events);
 
 process align {
   input:
-  file fasta 
-  
-  output: 
+  file fasta
+
+  output:
   file aln
-  
+
   """
-  t_coffee -in $fasta 1> aln 
+  t_coffee -in $fasta 1> aln
   """
 
-} 
+}
 
 
-aln.subscribe { 
+aln.subscribe {
   println '------'
-  println it.text 
+  println it.text
 }

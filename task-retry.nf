@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -32,11 +33,11 @@ process foo {
     if [[ -f $PWD/marker ]]; then
     	echo DONE - mem: $task.memory - time: $task.time
     	exit 0
-    else 
+    else
     	echo FAIL
-    	touch $PWD/marker 
-    	exit 5; 
-    fi  
+    	touch $PWD/marker
+    	exit 5;
+    fi
     """
 
 }

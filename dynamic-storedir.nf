@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -24,22 +25,22 @@ data = 'Hello\n'
 
 process foo {
 
-  storeDir "cache/$x" 
+  storeDir "cache/$x"
 
-  input: 
+  input:
   each x from 'alpha', 'delta', 'gamma', 'omega'
   file 'result.txt' from data
-  
-  output: 
+
+  output:
   set x, file('result.txt') into result
-  
+
   """
   echo World >> result.txt
   """
 
 }
 
-result.subscribe { code, file -> 
+result.subscribe { code, file ->
   println "~ Result ${file}"
   file.copyTo("my_${code}.txt")
 }

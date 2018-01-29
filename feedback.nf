@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -23,27 +24,27 @@ foo = Channel.from('abc')
 loop = Channel.create()
 
 process bar {
-  input: 
-  file x from foo .mix(loop.take(2)) 
-  output: 
-  file q 
-  
+  input:
+  file x from foo .mix(loop.take(2))
+  output:
+  file q
+
   """
   rev $x > q
   """
 }
 
 process baz {
-  input: 
-  file q from q 
-  output: 
+  input:
+  file q from q
+  output:
   file z into loop
   file z into result
-  
+
   """
-  cat $q > z 
-  echo 'hello' >> z 
-  """ 
+  cat $q > z
+  echo 'hello' >> z
+  """
 }
 
 result.last().println { it.text }

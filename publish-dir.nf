@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -58,12 +59,11 @@ process foo {
   publishDir 'data', mode: 'link'
   output:
   file 'xxx'
-  
+
   '''
-  mkdir xxx 
+  mkdir xxx
   touch xxx/A
   touch xxx/B
   touch xxx/C
   '''
 }
-

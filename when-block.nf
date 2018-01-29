@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -24,11 +25,11 @@ decode = ['zero','one','two','three','fourth']
 
 process foo {
     tag "${decode[x]}"
-    
-    input: 
-    val x from items 
-    
-    when: 
+
+    input:
+    val x from items
+
+    when:
     x >= 3
 
     script:
@@ -40,10 +41,10 @@ process foo {
 
 process bar {
     tag "${decode[x]}"
-    
-    input: 
-    val x from items 
-    
+
+    input:
+    val x from items
+
     when:
     x < 3
 

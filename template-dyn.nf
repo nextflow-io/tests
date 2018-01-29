@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -24,8 +25,8 @@ list = 'alpha,delta,gamma'.tokenize(',')
 
 process foo {
   input:
-  each x from list   
-  
+  each x from list
+
   script:
   template(task.command)
 
@@ -34,8 +35,8 @@ process foo {
 
 process bar {
   input:
-  each x from list   
-  
-  script: 
+  each x from list
+
+  script:
   template(task.command)
 }

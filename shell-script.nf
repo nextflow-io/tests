@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -18,14 +19,14 @@
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-echo true 
-params.data = 'zzz' 
+echo true
+params.data = 'zzz'
 
 process foo {
-  input: 
+  input:
     each x from 'alpha','omega'
 
-  shell: 
+  shell:
     '''
     echo Home: $HOME - Input: !{x} !{params.data}
     '''
