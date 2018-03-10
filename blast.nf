@@ -41,7 +41,7 @@ process blast {
 
 process sort {
     input:
-    file 'hits_*' from blast_result.toSortedList()
+    file 'hits_*' from blast_result.collect()
 
     output:
     stdout result
