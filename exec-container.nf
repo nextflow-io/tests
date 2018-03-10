@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -17,19 +18,19 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 params.in = "$baseDir/data/sample.fa"
 fasta = file(params.in)
 
 process tcoffee {
-  container true 
-  
+  container true
+
   input:
-  file fasta 
-  
-  output: 
+  file fasta
+
+  output:
   file 'result.fa' into result
-  
+
   """
   # define box inputs
   CONT_INPUT_FASTA=$fasta
@@ -40,4 +41,4 @@ process tcoffee {
 
 }
 
-result.println { it.text } 
+result.println { it.text }

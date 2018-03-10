@@ -18,27 +18,19 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-params.events = 'create'
-params.files = 'examples/data/*.fa'
-
-fasta = Channel.watchPath(params.files, params.events);
-
-process align {
-  input:
-  file fasta
-
+ 
+process foo {
+  validExitStatus 100
   output:
-  file aln
+  val( task.exitStatus ) into ch1
+  set val( record.foo ), val( record.bar ) into ch2
 
+  script:
+  record = [foo:'aaa', bar: 'bbb']
   """
-  t_coffee -in $fasta 1> aln
+  exit 100
   """
-
 }
 
-
-aln.subscribe {
-  println '------'
-  println it.text
-}
+ch1.println { "exit_status=$it" }
+ch2.println { "record=${it[0]}_${it[1]}" }

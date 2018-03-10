@@ -3,6 +3,6 @@ foo = 'bar'
 
 process {
    cpus = 8
-   disk = '300GB'
    memory = '10GB'
+   disk = '300GB'
 }

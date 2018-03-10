@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -24,13 +25,13 @@ data = 'Hello\n'
 
 process foo {
 
-  input: 
+  input:
   each x from 'alpha', 'delta', 'gamma', 'omega'
   file "${params.prefix}_${x}.txt" from data
-  
-  output: 
+
+  output:
   file "${params.prefix}_${x}.txt" into result
-  
+
   """
   echo World >>  ${params.prefix}_${x}.txt
   """

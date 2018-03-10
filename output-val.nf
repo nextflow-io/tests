@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -22,11 +23,11 @@ x = 100
 y = 200
 
 process foo {
-  input: 
+  input:
   file fastq from 'dummy'
 
-  output: 
-  val 'Hello' into str_channel 
+  output:
+  val 'Hello' into str_channel
   val "${fastq.baseName}-${x}.out" into exp_channel
   val x into x_channel
   val y into y_channel
@@ -34,9 +35,9 @@ process foo {
   script:
   y = 'two hundred'
   """
-  echo bar 
+  echo bar
   """
-} 
+}
 
 x_channel.println { "x: $it" }
 y_channel.println { "y: $it" }

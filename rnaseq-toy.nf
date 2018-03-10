@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -24,12 +25,12 @@
  */
 params.reads = "$baseDir/data/ggal/*_{1,2}.fq"
 params.genome = "$baseDir/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa"
-  
+
 /*
  * The reference genome file
  */
-genome_file = file(params.genome) 
- 
+genome_file = file(params.genome)
+
 /*
  * Creates the `read_pairs` channel that emits for each read-pair a tuple containing 
  * three elements: the pair ID, the first read-pair file and the second read-pair file 
@@ -48,12 +49,12 @@ process buildIndex {
      
     output:
     file 'genome.index*' into genome_index
-       
+
     """
     bowtie2-build ${genome} genome.index
     """
 }
- 
+
 /*
  * Step 2. Maps each read-pair by using Tophat2 mapper tool
  */
@@ -70,7 +71,7 @@ process mapping {
     tophat2 genome.index ${reads}
     """
 }
- 
+
 /*
  * Step 3. Assembles the transcript by using the "cufflinks" 
  * and publish the transcript output files into the `results` folder
@@ -83,7 +84,7 @@ process makeTranscript {
      
     output:
     set pair_id, 'transcripts.gtf' into transcripts
- 
+
     """
     cufflinks ${bam_file}
     """

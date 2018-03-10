@@ -1,6 +1,7 @@
+#!/usr/bin/env nextflow
 /*
- * Copyright (c) 2013-2017, Centre for Genomic Regulation (CRG).
- * Copyright (c) 2013-2017, Paolo Di Tommaso and the respective authors.
+ * Copyright (c) 2013-2018, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2013-2018, Paolo Di Tommaso and the respective authors.
  *
  *   This file is part of 'Nextflow'.
  *
@@ -21,12 +22,12 @@
 params.ext = 'fastq'
 
 process foo {
-  echo true 
+  echo true
   tag "${barcode}.${params.ext}"
 
-  input: 
+  input:
   each barcode from 'alpha', 'delta', 'gamma', 'omega'
-  
+
   """
   echo $barcode
   """
