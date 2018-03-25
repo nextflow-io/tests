@@ -30,7 +30,7 @@ process foo {
   if( x != 3 )
   """
     echo run_$x  
-	sleep 5
+    sleep 5
   """
   else
   """
