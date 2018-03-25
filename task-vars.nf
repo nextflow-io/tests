@@ -23,7 +23,7 @@
 process printVars {
 
     echo true
-    cpus 10
+    cpus 2
     penv 'mpi'
     time '1 day'
     memory '1GB'

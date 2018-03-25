@@ -8,7 +8,7 @@ $NXF_RUN | tee stdout
 
 [[ `grep 'INFO' .nextflow.log | grep -c 'Submitted process > printVars'` == 3 ]] || false
 
-< stdout grep 'cpus: 10'
+< stdout grep 'cpus: 2'
 < stdout grep 'penv: mpi'
 < stdout grep 'time: 1d'
 < stdout grep 'memory: 1 GB'
@@ -27,7 +27,7 @@ $NXF_RUN -resume | tee stdout
 
 [[ `grep 'INFO' .nextflow.log | grep -c 'Cached process > printVars'` == 3 ]] || false
 
-< stdout grep 'cpus: 10'
+< stdout grep 'cpus: 2'
 < stdout grep 'penv: mpi'
 < stdout grep 'time: 1d'
 < stdout grep 'memory: 1 GB'
