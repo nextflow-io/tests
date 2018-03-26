@@ -19,9 +19,9 @@
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-echo true
 
 process foo {
+  echo true
   errorStrategy 'finish'
   input:  each x from 1,2,3
   output: stdout into results
