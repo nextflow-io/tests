@@ -19,9 +19,9 @@
  *   along with Nextflow.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-echo true
 
 process foo {
+  echo true
   errorStrategy 'finish'
   input:  each x from 1,2,3
   output: stdout into results
@@ -30,7 +30,7 @@ process foo {
   if( x != 3 )
   """
     echo run_$x  
-	sleep 5
+    sleep 5
   """
   else
   """
