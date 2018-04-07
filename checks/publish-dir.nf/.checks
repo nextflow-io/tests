@@ -15,6 +15,7 @@ cmp stdout .expected || false
 [[ -f data/delta.bai ]] || false
 [[ -f data/delta.bam ]] || false
 [[ -L data/result.txt ]] || false
+[[ -f more/data/result.txt ]] || false
 [[ -f data/xxx/A ]] || false
 [[ -f data/xxx/B ]] || false
 [[ -f data/xxx/C ]] || false
@@ -37,6 +38,7 @@ cmp stdout .expected || false
 [[ -f data/delta.bai ]] || false
 [[ -f data/delta.bam ]] || false
 [[ -L data/result.txt ]] || false
+[[ -f more/data/result.txt ]] || false
 [[ -f data/xxx/A ]] || false
 [[ -f data/xxx/B ]] || false
 [[ -f data/xxx/C ]] || false
@@ -47,6 +49,7 @@ cmp stdout .expected || false
 #
 echo Third run
 rm -rf data
+rm -rf more/data
 
 $NXF_RUN -resume | tee stdout
 
@@ -60,6 +63,7 @@ cmp stdout .expected || false
 [[ -f data/delta.bai ]] || false
 [[ -f data/delta.bam ]] || false
 [[ -L data/result.txt ]] || false
+[[ -f more/data/result.txt ]] || false
 #
 # NOTE: on Mac when deleting an hard-link also the origin is removed
 #
