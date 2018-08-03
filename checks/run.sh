@@ -57,7 +57,7 @@ function run_checks() {
   set -e
   if [[ $ret != 0 ]]; then 
     echo "~ Test '$1' run failed" >> $REPORT
-    # dump error outout
+    # dump error output
     [[ -s checks.out ]] && cat checks.out | sed 's/^/   /'>> $REPORT  
     echo '' >> $REPORT 
     # dump nextflow log file  
