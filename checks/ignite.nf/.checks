@@ -1,5 +1,5 @@
 #
-# Run with Ignite exector standalone mode
+# Run with Ignite executor standalone mode
 # 
 $NXF_RUN -process.executor ignite | tee stdout
 
