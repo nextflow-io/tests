@@ -67,15 +67,25 @@ rm -rf $REPORT
 
 list=${1:-'../*.nf'}
 
+function can_run() {
+    if [[ `grep -c "$1" .ignore` != 0 ]]; then
+        echo 'no'
+    elif [[ ! $WITH_DOCKER && `grep -c "$1" .usedocker` != 0 ]]; then
+        echo 'no'
+    else
+        echo 'yes'
+    fi
+}
+
 for x in $list; do
   basename=$(basename $x)
-  if [[ `grep -c "$basename" .ignore` == 0 ]]; then 
+  if [[ $(can_run $basename) == 'yes' ]]; then
     echo "> Running test: $basename"
     ( set -e; 
       run_checks $basename 
     )
   else
-    echo "- Ignoring test: $basename" 
+    echo "- Ignoring test: $basename"
   fi  
 done
 
