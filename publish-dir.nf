@@ -39,6 +39,7 @@ process align {
 
 process combine {
     publishDir 'data'
+    publishDir 'more/data', mode: 'copy'
 
     input:
     file(bamfile) from bam.toSortedList { it.name }
