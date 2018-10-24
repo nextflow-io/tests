@@ -26,6 +26,7 @@ function echo_yellow() {
 NXF_CMD=${NXF_CMD:-nextflow}
 REPORT=$PWD/.report
 WITH_DOCKER=${WITH_DOCKER:=''}
+TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST:=false}
 
 #
 # Clean scratch dir 
@@ -56,7 +57,11 @@ function run_checks() {
   set -e
   if [[ $ret != 0 ]]; then 
     echo "~ Test '$1' run failed" >> $REPORT
+    # dump error output
     [[ -s checks.out ]] && cat checks.out | sed 's/^/   /'>> $REPORT  
+    echo '' >> $REPORT 
+    # dump nextflow log file  
+    [[ -f .nextflow.log ]] && cat .nextflow.log >> $REPORT
     echo '' >> $REPORT   
     exit 1
   fi  
@@ -68,10 +73,13 @@ rm -rf $REPORT
 list=${1:-'../*.nf'}
 
 function can_run() {
-    if [[ `grep -c "$1" .ignore` != 0 ]]; then
+    if [[ `grep -c "$1" .IGNORE` != 0 ]]; then
         echo 'no'
-    elif [[ ! $WITH_DOCKER && `grep -c "$1" .usedocker` != 0 ]]; then
+    elif [[ ! $WITH_DOCKER && `grep -c "$1" .IGNORE-DOCKER` != 0 ]]; then
         echo 'no'
+    elif [[ $TRAVIS_PULL_REQUEST != false && `grep -c "$1" .IGNORE-TRAVIS-PR` != 0 ]]; then 
+        # https://docs.travis-ci.com/user/pull-requests/#Pull-Requests-and-Security-Restrictions
+        echo 'no'    
     else
         echo 'yes'
     fi

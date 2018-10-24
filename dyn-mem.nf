@@ -1,3 +1,4 @@
+#!/usr/bin/env nextflow
 /*
  * Copyright 2013-2018, Centre for Genomic Regulation (CRG)
  *
@@ -14,10 +15,14 @@
  * limitations under the License.
  */
 
-process {
-
-	cpus = 8
-	memory = '10GB'
-	disk = '300GB' 
-
+process foo {
+  memory { x.size() < 10.B  ? 100.MB : 200.MB }
+  
+  input: 
+  file x from Channel.fromPath(['.small.txt','.big.txt'])
+  
+  script:
+  """
+  echo task=$x mem=$task.memory 
+  """
 }
