@@ -4,6 +4,9 @@ jdk:
 - oraclejdk8
 services:
   - docker
+env:
+  global:
+  - NXF_ANSI_LOG=false
 install:
 - sudo apt-get -qq update
 - sudo apt-get -qq -y install graphviz realpath
