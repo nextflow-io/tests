@@ -7,6 +7,7 @@ services:
 env:
   global:
   - NXF_ANSI_LOG=false
+  - NXF_IGNORE_WARN_DSL2=true
   - TEST_JDK=8
 install:
 - sudo apt-get -qq update
